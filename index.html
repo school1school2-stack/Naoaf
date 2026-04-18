@@ -2,87 +2,104 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>ورقة تدريب الحروف الهجائية - 3 فراغات</title>
+    <title>ورقة الحروف الهجائية - صفحة واحدة</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        :root { --primary-color: #2c3e50; --border-color: #bdc3c7; }
-        body { font-family: 'Tajawal', sans-serif; background: #f0f0f0; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        :root { --border-color: #a0a0a0; }
+        * { box-sizing: border-box; }
         
-        .page { 
-            width: 210mm; background: white; padding: 20px; box-sizing: border-box; 
-            box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 10px;
+        body { 
+            font-family: 'Tajawal', sans-serif; 
+            margin: 0; padding: 0; 
+            background: #f0f0f0; 
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        h1 { text-align: center; color: var(--primary-color); margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .page { 
+            width: 210mm; 
+            height: 297mm; 
+            background: white; 
+            padding: 10mm; 
+            display: flex; flex-direction: column;
+        }
 
-        /* تقسيم الحروف: كل حرف مع فراغاته يأخذ سطر */
-        .alphabet-row {
+        h1 { 
+            text-align: center; 
+            font-size: 22px; 
+            margin: 0 0 10px 0; 
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+
+        /* تقسيم الصفحة إلى عمودين لتوفير المساحة */
+        .main-wrapper {
             display: grid;
-            grid-template-columns: 80px 1fr 1fr 1fr; /* حرف ثم 3 مساحات */
-            gap: 10px;
-            margin-bottom: 15px;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 20px;
+            row-gap: 5px;
+            flex-grow: 1;
+        }
+
+        .letter-row {
+            display: grid;
+            grid-template-columns: 40px 1fr 1fr 1fr; /* الحرف ثم 3 مربعات */
+            gap: 5px;
             align-items: center;
         }
 
-        .main-char {
-            font-size: 45px;
-            color: #e74c3c;
+        .char-guide {
+            font-size: 28px;
+            font-weight: bold;
             text-align: center;
+            color: #d32f2f;
             background: #f9f9f9;
-            border-radius: 8px;
-            padding: 5px;
-            border: 1px solid #eee;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            line-height: 45px;
         }
 
         .empty-box {
-            height: 80px;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            position: relative;
-        }
-
-        /* سطر وهمي خفيف لمساعدة الطفل على الكتابة في المنتصف */
-        .empty-box::after {
-            content: "";
-            position: absolute;
-            top: 50%; width: 100%;
-            border-bottom: 1px dashed #eee;
+            height: 45px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: #fff;
         }
 
         .print-btn {
-            background: #27ae60; color: white; padding: 10px 30px; border: none;
-            border-radius: 5px; cursor: pointer; font-size: 18px; margin-bottom: 20px;
-            font-family: 'Tajawal', sans-serif;
+            margin: 10px; padding: 10px 20px; 
+            background: #007bff; color: white; 
+            border: none; border-radius: 5px; cursor: pointer;
         }
 
         @media print {
             .print-btn { display: none; }
-            body { background: white; padding: 0; }
-            .page { box-shadow: none; border: none; width: 100%; }
-            .empty-box { border: 2px solid #333; }
+            body { background: white; }
+            .page { border: none; box-shadow: none; margin: 0; width: 100%; height: 100%; }
+            .char-guide { -webkit-print-color-adjust: exact; background-color: #f9f9f9 !important; }
         }
     </style>
 </head>
 <body>
 
-    <button class="print-btn" onclick="window.print()">طباعة الورقة</button>
+    <button class="print-btn" onclick="window.print()">طباعة الورقة (ورقة واحدة A4)</button>
 
     <div class="page">
-        <h1>تدريب على كتابة الحروف الهجائية</h1>
-        <div id="alphabet-container">
-            <!-- سيتم توليد الصفوف هنا -->
+        <h1>كراسة تدريب الحروف الهجائية</h1>
+        <div class="main-wrapper" id="container">
+            <!-- سيتم توزيع الحروف هنا -->
         </div>
     </div>
 
     <script>
         const letters = ["أ", "ب", "ت", "ث", "ج", "ح", "خ", "د", "ذ", "ر", "ز", "س", "ش", "ص", "ض", "ط", "ظ", "ع", "غ", "ف", "ق", "ك", "ل", "م", "ن", "هـ", "و", "ي"];
-        const container = document.getElementById('alphabet-container');
+        const container = document.getElementById('container');
 
         letters.forEach(char => {
             const row = document.createElement('div');
-            row.className = 'alphabet-row';
+            row.className = 'letter-row';
             row.innerHTML = `
-                <div class="main-char">${char}</div>
+                <div class="char-guide">${char}</div>
                 <div class="empty-box"></div>
                 <div class="empty-box"></div>
                 <div class="empty-box"></div>
