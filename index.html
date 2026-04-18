@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>ورقة تدريب الحروف الهجائية</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; background: #f4f4f4; display: flex; justify-content: center; padding: 20px; }
+        .page { width: 210mm; background: white; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; }
+        h1 { text-align: center; color: #333; margin-bottom: 30px; }
+        
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(6, 1fr); /* 6 مربعات في السطر */
+            gap: 15px; 
+        }
+
+        .letter-box {
+            aspect-ratio: 1 / 1;
+            border: 2px solid #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .char { font-size: 40px; font-weight: bold; color: #555; }
+        .dots { border-bottom: 2px dotted #ccc; width: 80%; height: 40px; margin-bottom: 5px; }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .page { box-shadow: none; border: none; width: 100%; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+    <h1>أتعلم كتابة الحروف الهجائية</h1>
+    <div class="grid-container" id="alphabet-grid">
+        <!-- سيتم توليد المربعات هنا بواسطة JavaScript -->
+    </div>
+</div>
+
+<script>
+    const letters = ["أ", "ب", "ت", "ث", "ج", "ح", "خ", "د", "ذ", "ر", "ز", "س", "ش", "ص", "ض", "ط", "ظ", "ع", "غ", "ف", "ق", "ك", "ل", "م", "ن", "هـ", "و", "ي"];
+    const container = document.getElementById('alphabet-grid');
+
+    letters.forEach(char => {
+        const box = document.createElement('div');
+        box.className = 'letter-box';
+        box.innerHTML = `
+            <div class="char">${char}</div>
+            <div class="dots"></div>
+        `;
+        container.appendChild(box);
+    });
+</script>
+
+</body>
+</html>
+
