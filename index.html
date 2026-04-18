@@ -2,92 +2,111 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>ورقة الحروف الهجائية - صفحة واحدة</title>
+    <title>ورقة الحروف الهجائية - كامل الورقة</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        :root { --border-color: #a0a0a0; }
+        :root { --border-color: #333; }
         * { box-sizing: border-box; }
         
+        @page {
+            size: A4;
+            margin: 5mm; /* هوامش صغيرة جداً للطابعة */
+        }
+
         body { 
             font-family: 'Tajawal', sans-serif; 
             margin: 0; padding: 0; 
             background: #f0f0f0; 
-            display: flex; flex-direction: column; align-items: center;
         }
 
         .page { 
             width: 210mm; 
-            height: 297mm; 
+            min-height: 297mm; 
             background: white; 
-            padding: 10mm; 
+            padding: 5mm; 
+            margin: 0 auto;
             display: flex; flex-direction: column;
         }
 
-        h1 { 
-            text-align: center; 
-            font-size: 22px; 
-            margin: 0 0 10px 0; 
-            color: #333;
-            border-bottom: 2px solid #333;
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 10px;
             padding-bottom: 5px;
         }
 
-        /* تقسيم الصفحة إلى عمودين لتوفير المساحة */
+        h1 { margin: 0; font-size: 24px; color: #000; }
+
+        /* توزيع الحروف على عمودين لتغطية كامل العرض */
         .main-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            column-gap: 20px;
-            row-gap: 5px;
+            column-gap: 15px; /* مسافة بين العمودين */
+            row-gap: 8px;   /* مسافة بين الأسطر */
             flex-grow: 1;
         }
 
         .letter-row {
             display: grid;
-            grid-template-columns: 40px 1fr 1fr 1fr; /* الحرف ثم 3 مربعات */
-            gap: 5px;
-            align-items: center;
+            grid-template-columns: 55px 1fr 1fr 1fr; /* تكبير مربع الحرف المرجعي */
+            gap: 6px;
+            align-items: stretch;
         }
 
         .char-guide {
-            font-size: 28px;
+            font-size: 35px; /* تكبير الحرف */
             font-weight: bold;
             text-align: center;
-            color: #d32f2f;
-            background: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            line-height: 45px;
+            color: #000;
+            background: #f2f2f2;
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .empty-box {
-            height: 45px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
+            height: 58px; /* تكبير ارتفاع مربع الكتابة */
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
             background: #fff;
+            position: relative;
+        }
+
+        /* سطر مساعدة وهمي في المنتصف */
+        .empty-box::after {
+            content: "";
+            position: absolute;
+            top: 60%; width: 100%;
+            border-bottom: 1px dashed #ddd;
         }
 
         .print-btn {
-            margin: 10px; padding: 10px 20px; 
-            background: #007bff; color: white; 
-            border: none; border-radius: 5px; cursor: pointer;
+            display: block; width: 200px; margin: 20px auto; 
+            padding: 10px; background: #27ae60; color: white; 
+            text-align: center; border-radius: 5px; cursor: pointer; text-decoration: none;
         }
 
         @media print {
             .print-btn { display: none; }
             body { background: white; }
-            .page { border: none; box-shadow: none; margin: 0; width: 100%; height: 100%; }
-            .char-guide { -webkit-print-color-adjust: exact; background-color: #f9f9f9 !important; }
+            .page { border: none; box-shadow: none; margin: 0; width: 100%; }
+            .char-guide { -webkit-print-color-adjust: exact; }
         }
     </style>
 </head>
 <body>
 
-    <button class="print-btn" onclick="window.print()">طباعة الورقة (ورقة واحدة A4)</button>
+    <a href="#" class="print-btn" onclick="window.print()">طباعة الورقة الآن</a>
 
     <div class="page">
-        <h1>كراسة تدريب الحروف الهجائية</h1>
+        <header>
+            <h1>كراسة تدريب الحروف الهجائية</h1>
+        </header>
+
         <div class="main-wrapper" id="container">
-            <!-- سيتم توزيع الحروف هنا -->
+            <!-- سيتم توليد 28 حرفاً هنا -->
         </div>
     </div>
 
