@@ -2,36 +2,36 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>ورقة الحروف الهجائية - صفحة واحدة</title>
+    <title>ورقة الحروف الهجائية - تنسيق متوازن</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        :root { --border-color: #444; }
+        :root { --border-color: #333; }
         * { box-sizing: border-box; }
         
         @page {
             size: A4;
-            margin: 8mm; /* هوامش متوازنة لمنع الخروج لصفحة ثانية */
+            margin: 10mm; /* هوامش متوازنة للطباعة */
         }
 
         body { 
             font-family: 'Tajawal', sans-serif; 
             margin: 0; padding: 0; 
-            background: #eee; 
+            background: #f4f4f4; 
         }
 
         .page { 
             width: 210mm; 
-            height: 285mm; /* تقليل الارتفاع الكلي لضمان صفحة واحدة */
+            min-height: 290mm; 
             background: white; 
-            padding: 5mm 10mm; 
+            padding: 10mm; 
             margin: 0 auto;
             display: flex; flex-direction: column;
         }
 
         header {
             text-align: center;
-            border-bottom: 2px solid #ddd;
-            margin-bottom: 12px;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 15px;
             padding-bottom: 5px;
         }
 
@@ -40,35 +40,34 @@
         .main-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            column-gap: 20px;
-            row-gap: 4px; /* تقليل المسافة الرأسية */
+            column-gap: 30px; /* مسافة جانبية تعطي شكلاً أرشق */
+            row-gap: 6px; 
             flex-grow: 1;
         }
 
         .letter-row {
             display: grid;
-            grid-template-columns: 50px 1fr 1fr 1fr; 
-            gap: 5px;
+            grid-template-columns: 45px 1fr 1fr 1fr; 
+            gap: 6px;
         }
 
         .char-guide {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: bold;
             text-align: center;
-            color: #000;
-            background: #f8f8f8;
+            background: #f9f9f9;
             border: 1.5px solid var(--border-color);
-            border-radius: 4px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 52px; /* الارتفاع المثالي لـ 14 سطر في الصفحة */
+            height: 48px; /* ارتفاع متناسق يجعل المربع أقرب للشكل المربع */
         }
 
         .empty-box {
-            height: 52px;
+            height: 48px;
             border: 1.5px solid var(--border-color);
-            border-radius: 4px;
+            border-radius: 6px;
             background: #fff;
             position: relative;
         }
@@ -77,13 +76,13 @@
         .empty-box::after {
             content: "";
             position: absolute;
-            top: 60%; width: 80%; right: 10%;
-            border-bottom: 1px dotted #ccc;
+            top: 60%; width: 70%; right: 15%;
+            border-bottom: 1px dotted #ddd;
         }
 
         .print-btn {
-            display: block; width: 180px; margin: 15px auto; 
-            padding: 8px; background: #2c3e50; color: white; 
+            display: block; width: 150px; margin: 15px auto; 
+            padding: 8px; background: #34495e; color: white; 
             text-align: center; border-radius: 5px; cursor: pointer; text-decoration: none;
             font-size: 14px;
         }
@@ -91,14 +90,14 @@
         @media print {
             .print-btn { display: none; }
             body { background: white; }
-            .page { border: none; box-shadow: none; margin: 0; padding: 5mm; }
-            .char-guide { -webkit-print-color-adjust: exact; background-color: #f8f8f8 !important; }
+            .page { border: none; box-shadow: none; margin: 0; width: 100%; padding: 5mm; }
+            .char-guide { -webkit-print-color-adjust: exact; background-color: #f9f9f9 !important; }
         }
     </style>
 </head>
 <body>
 
-    <a href="#" class="print-btn" onclick="window.print()">اضغط هنا للطباعة</a>
+    <a href="#" class="print-btn" onclick="window.print()">طباعة الورقة</a>
 
     <div class="page">
         <header>
@@ -106,7 +105,7 @@
         </header>
 
         <div class="main-wrapper" id="container">
-            <!-- سيتم توليد الحروف هنا -->
+            <!-- سيتم توليد 28 حرفاً هنا -->
         </div>
     </div>
 
